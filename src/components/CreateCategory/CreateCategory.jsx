@@ -8,7 +8,7 @@ const CreateCategory = () => {
           <p>chatGPTからの回答（カテゴリー）</p>
         </div>
         <div className="createTitle-btn-container">
-          <button className="createTitle-btn">タイトル生成</button>
+          <button className="createTitle-btn">カテゴリー生成</button>
         </div>
       </div>
     </Layout>

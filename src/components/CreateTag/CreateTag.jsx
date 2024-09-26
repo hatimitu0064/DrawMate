@@ -8,7 +8,7 @@ const CreateTag = () => {
           <p>chatGPTからの回答（タグ）</p>
         </div>
         <div className="createTitle-btn-container">
-          <button className="createTitle-btn">タイトル生成</button>
+          <button className="createTitle-btn">タグ生成</button>
         </div>
       </div>
     </Layout>
