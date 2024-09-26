@@ -1,0 +1,36 @@
+.img-form-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 50px;
+	height: 300px;
+
+	.img-container {
+		width: 300px;
+		height: 300px;
+
+		img {
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.input-container {
+		
+		input {
+			display: none;
+		}
+		
+		.fileInput-label {
+			background-color: rgb(52, 197, 30);
+			border-radius: 5px;
+			padding: 8px 10px;
+			cursor: pointer;
+			margin-left: 30px;
+
+			&:hover {
+				background-color: rgb(49, 159, 27);
+			}
+		}
+	}
+}
