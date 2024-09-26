@@ -24,12 +24,13 @@
 		.fileInput-label {
 			background-color: rgb(52, 197, 30);
 			border-radius: 5px;
-			padding: 8px 10px;
+			padding: 15px 20px;
 			cursor: pointer;
 			margin-left: 30px;
+			border: none;
 
 			&:hover {
-				background-color: rgba(52, 197, 30, 0.845);
+				background-color: rgba(52, 197, 30, 0.788);
 			}
 		}
 	}
