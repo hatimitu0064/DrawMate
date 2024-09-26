@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import AllCreateText from './components/AllCreateText/AllCreateText'
 import CreateCategory from './components/CreateCategory/CreateCategory'
@@ -7,10 +8,11 @@ import ImgForm from './components/ImgForm/ImgForm'
 import Save from './components/Save/Save'
 
 function App() {
+  const [selectedImg, setSelectedImg] = useState(null);
 
   return (
     <>
-			<ImgForm />
+			<ImgForm selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
 			<CreateTitle />
 			<CreateTag />
 			<CreateCategory />

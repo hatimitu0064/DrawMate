@@ -1,8 +1,8 @@
-import { useState } from "react";
-import './ImgForm.scss'
+import PropTypes from "prop-types";
 
-const ImgForm = () => {
-  const [selectedImg, setSelectedImg] = useState(null);
+import "./ImgForm.scss";
+
+const ImgForm = ({ selectedImg, setSelectedImg }) => {
 
   const handleImgChange = (e) => {
     const file = e.target.files[0];
@@ -23,11 +23,23 @@ const ImgForm = () => {
         </div>
       )}
       <form className="input-container">
-        <input id="fileInput" type="file" accept="image/*" onChange={handleImgChange} />
-				<label htmlFor="fileInput" className="fileInput-label">画像を選択</label>
+        <input
+          id="fileInput"
+          type="file"
+          accept="image/*"
+          onChange={handleImgChange}
+        />
+        <label htmlFor="fileInput" className="fileInput-label">
+          画像を選択
+        </label>
       </form>
     </div>
   );
 };
+
+ImgForm.propTypes = {
+	selectedImg: PropTypes.string,
+	setSelectedImg: PropTypes.func.isRequired,
+}
 
 export default ImgForm;
