@@ -19,7 +19,6 @@ const ImgForm = () => {
     <div className="img-form-container">
       {setSelectedImg && (
         <div className="img-container">
-          {/* <p>選択した画像：</p> */}
           <img src={selectedImg} className="selectImg" />
         </div>
       )}
