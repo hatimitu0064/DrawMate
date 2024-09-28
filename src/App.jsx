@@ -21,15 +21,15 @@ function App() {
   const [inputCategory, setInputCategory] =
     useState("chatGPTでカテゴリーを生成");
 
-  const handleCreateTitleBtnClick = () => handleCreateTitleBtn(setInputTitle);
-  const handleCreateTagsBtnClick = () => handleCreateTagsBtn(setInputTags);
-  const handleCreateCategoryBtnClick = () =>
+  const CreateTitleBtnClick = () => handleCreateTitleBtn(setInputTitle);
+  const CreateTagsBtnClick = () => handleCreateTagsBtn(setInputTags);
+  const CreateCategoryBtnClick = () =>
     handleCreateCategoryBtn(setInputCategory);
-  const handleAllCreateClick = () =>
+  const AllCreateClick = () =>
     handleAllCreateBtn(
-      handleCreateTitleBtnClick,
-      handleCreateTagsBtnClick,
-      handleCreateCategoryBtnClick
+      CreateTitleBtnClick,
+      CreateTagsBtnClick,
+      CreateCategoryBtnClick
     );
 
   return (
@@ -37,21 +37,21 @@ function App() {
       <Layout>
         <ImgForm selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         <CreateTitle
-          onClick={handleCreateTitleBtnClick}
+          onClick={CreateTitleBtnClick}
           inputTitle={inputTitle}
           setInputTitle={setInputTitle}
         />
         <CreateTag
-          onClick={handleCreateTagsBtnClick}
+          onClick={CreateTagsBtnClick}
           inputTags={inputTags}
           setInputTags={setInputTags}
         />
         <CreateCategory
-          onClick={handleCreateCategoryBtnClick}
+          onClick={CreateCategoryBtnClick}
           inputCategory={inputCategory}
           setInputCategory={setInputCategory}
         />
-        <AllCreateText onClick={handleAllCreateClick} />
+        <AllCreateText onClick={AllCreateClick} />
         <Save />
       </Layout>
     </>
