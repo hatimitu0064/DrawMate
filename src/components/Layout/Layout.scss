@@ -41,3 +41,16 @@ main {
 		}
 	}
 }
+
+.GPT-response {
+	border: none;
+	background-color: rgb(5, 165, 165);
+
+	&:focus {
+		outline: none;
+	}
+}
+
+textarea {
+	resize: none;
+}
