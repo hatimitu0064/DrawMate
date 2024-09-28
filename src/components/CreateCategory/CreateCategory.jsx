@@ -1,8 +1,5 @@
-import Layout from "../Layout/Layout";
-
 const CreateCategory = () => {
   return (
-    <Layout>
       <div className="createTitle-container">
         <div className="GPT-response-container">
           <p>chatGPTからの回答（カテゴリー）</p>
@@ -11,7 +8,6 @@ const CreateCategory = () => {
           <button className="createTitle-btn">カテゴリー生成</button>
         </div>
       </div>
-    </Layout>
   )
 };
 

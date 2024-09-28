@@ -1,8 +1,15 @@
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
 .createTitle-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0px 500px;
+	// padding: 0px 500px;
 	margin-bottom: 25px;
 
 	.GPT-response-container {
