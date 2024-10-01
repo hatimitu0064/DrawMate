@@ -8,10 +8,11 @@ import ImgForm from "./components/ImgForm/ImgForm";
 import Save from "./components/Save/Save";
 import Layout from "./components/Layout/Layout";
 import {
+  createCategoryItems,
+  createTagItems,
+  createTitleItems,
   handleAllCreateBtn,
-  handleCreateCategoryBtn,
-  handleCreateTagsBtn,
-  handleCreateTitleBtn,
+  handleCreateBtn,
 } from "./utils/clickHandler";
 
 function App() {
@@ -21,15 +22,17 @@ function App() {
   const [inputCategory, setInputCategory] =
     useState("chatGPTでカテゴリーを生成");
 
-  const CreateTitleBtnClick = () => handleCreateTitleBtn(setInputTitle);
-  const CreateTagsBtnClick = () => handleCreateTagsBtn(setInputTags);
-  const CreateCategoryBtnClick = () =>
-    handleCreateCategoryBtn(setInputCategory);
-  const AllCreateClick = () =>
+  const createTitleBtnClick = () =>
+    handleCreateBtn(setInputTitle, createTitleItems);
+  const createTagsBtnClick = () =>
+    handleCreateBtn(setInputTags, createTagItems);
+  const createCategoryBtnClick = () =>
+    handleCreateBtn(setInputCategory, createCategoryItems);
+  const allCreateClick = () =>
     handleAllCreateBtn(
-      CreateTitleBtnClick,
-      CreateTagsBtnClick,
-      CreateCategoryBtnClick
+      createTitleBtnClick,
+      createTagsBtnClick,
+      createCategoryBtnClick
     );
 
   return (
@@ -37,21 +40,21 @@ function App() {
       <Layout>
         <ImgForm selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         <CreateTitle
-          onClick={CreateTitleBtnClick}
+          onClick={createTitleBtnClick}
           inputTitle={inputTitle}
           setInputTitle={setInputTitle}
         />
         <CreateTag
-          onClick={CreateTagsBtnClick}
+          onClick={createTagsBtnClick}
           inputTags={inputTags}
           setInputTags={setInputTags}
         />
         <CreateCategory
-          onClick={CreateCategoryBtnClick}
+          onClick={createCategoryBtnClick}
           inputCategory={inputCategory}
           setInputCategory={setInputCategory}
         />
-        <AllCreateText onClick={AllCreateClick} />
+        <AllCreateText onClick={allCreateClick} />
         <Save />
       </Layout>
     </>
