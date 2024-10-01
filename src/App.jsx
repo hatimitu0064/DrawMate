@@ -12,14 +12,16 @@ import {
   createCategoryItems,
   createTagItems,
   createTitleItems,
+  generateFileName,
   handleAllCreateBtn,
   handleCreateBtn,
+  handleDownload,
 } from "./utils/clickHandler";
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [inputTitle, setInputTitle] = useState("chatGPTでタイトルを生成");
-  const [inputTags, setInputTags] = useState("chatGPTでタグを生成");
+  const [inputTag, setInputTags] = useState("chatGPTでタグを生成");
   const [inputCategory, setInputCategory] =
     useState("chatGPTでカテゴリーを生成");
 
@@ -36,6 +38,12 @@ function App() {
       createCategoryBtnClick,
       selectedImg
     );
+  const saveBtnClick = () =>
+    handleDownload(
+      `タイトル\n${inputTitle}\n\nタグ\n${inputTag}\n\nカテゴリー\n${inputCategory}`,
+      selectedImg,
+      generateFileName
+    );
 
   return (
     <>
@@ -49,7 +57,7 @@ function App() {
         />
         <Create
           onClick={createTagBtnClick}
-          inputState={inputTags}
+          inputState={inputTag}
           setInputFn={setInputTags}
           btnText={"タグ"}
         />
@@ -60,7 +68,7 @@ function App() {
           btnText={"カテゴリー"}
         />
         <AllCreateText onClick={allCreateClick} />
-        <Save />
+        <Save onClick={saveBtnClick} />
       </Layout>
     </>
   );

@@ -1,9 +1,9 @@
 import "./Save.scss"
 
-const Save = () => {
+const Save = ({onClick}) => {
 	return (
 		<div className="save-btn-container">
-			<button className="save-btn">保存</button>
+			<button className="save-btn" onClick={onClick}>保存</button>
 		</div>
 	)
 }
