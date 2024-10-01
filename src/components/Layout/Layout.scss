@@ -5,11 +5,10 @@ main {
 	flex-direction: column;
 }
 
-.createTitle-container {
+.create-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	// padding: 0px 500px;
 	margin-bottom: 25px;
 
 	.GPT-response-container {
@@ -23,9 +22,9 @@ main {
 		justify-content: center;
 	}
 
-	.createTitle-btn-container {
+	.create-btn-container {
 
-		.createTitle-btn {
+		.create-btn {
 			background-color: rgb(52, 197, 30);
 			border-radius: 5px;
 			padding: 15px 20px;

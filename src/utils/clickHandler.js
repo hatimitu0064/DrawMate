@@ -16,17 +16,28 @@ export const createCategoryItems = {
   res: "・ビジネス\n・人物",
 };
 
-export const handleCreateBtn = (setInput, createItems) => {
-  console.log(createItems.prompt);
-  setInput(createItems.res);
+//TODO resの中身をAPIのレスポンスにする
+
+export const handleCreateBtn = (setInput, createItems, img) => {
+  if (!img) {
+    alert("エラー： 画像を選択してください。");
+  } else {
+    console.log(createItems.prompt);
+    setInput(createItems.res);
+  }
 };
 
 export const handleAllCreateBtn = (
   handleCreateTitleBtn,
   handleCreateTagsBtn,
-  handleCreateCategoryBtn
+  handleCreateCategoryBtn,
+  img
 ) => {
-  handleCreateTitleBtn();
-  handleCreateTagsBtn();
-  handleCreateCategoryBtn();
+  if (!img) {
+    alert("エラー： 画像を選択してください。");
+  } else {
+    handleCreateTitleBtn();
+    handleCreateTagsBtn();
+    handleCreateCategoryBtn();
+  }
 };

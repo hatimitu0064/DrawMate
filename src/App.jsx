@@ -1,12 +1,13 @@
 import { useState } from "react";
+
 import "./App.css";
+
 import AllCreateText from "./components/AllCreateText/AllCreateText";
-import CreateCategory from "./components/CreateCategory/CreateCategory";
-import CreateTag from "./components/CreateTag/CreateTag";
-import CreateTitle from "./components/CreateTitle/CreateTitle";
 import ImgForm from "./components/ImgForm/ImgForm";
 import Save from "./components/Save/Save";
 import Layout from "./components/Layout/Layout";
+import Create from "./components/Create/Create";
+
 import {
   createCategoryItems,
   createTagItems,
@@ -17,42 +18,46 @@ import {
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
-  const [inputTitle, setInputTitle] = useState("ChatGPTでタイトルを生成");
+  const [inputTitle, setInputTitle] = useState("chatGPTでタイトルを生成");
   const [inputTags, setInputTags] = useState("chatGPTでタグを生成");
   const [inputCategory, setInputCategory] =
     useState("chatGPTでカテゴリーを生成");
 
   const createTitleBtnClick = () =>
-    handleCreateBtn(setInputTitle, createTitleItems);
-  const createTagsBtnClick = () =>
-    handleCreateBtn(setInputTags, createTagItems);
+    handleCreateBtn(setInputTitle, createTitleItems, selectedImg);
+  const createTagBtnClick = () =>
+    handleCreateBtn(setInputTags, createTagItems, selectedImg);
   const createCategoryBtnClick = () =>
-    handleCreateBtn(setInputCategory, createCategoryItems);
+    handleCreateBtn(setInputCategory, createCategoryItems, selectedImg);
   const allCreateClick = () =>
     handleAllCreateBtn(
       createTitleBtnClick,
-      createTagsBtnClick,
-      createCategoryBtnClick
+      createTagBtnClick,
+      createCategoryBtnClick,
+      selectedImg
     );
 
   return (
     <>
       <Layout>
         <ImgForm selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-        <CreateTitle
+        <Create
           onClick={createTitleBtnClick}
-          inputTitle={inputTitle}
-          setInputTitle={setInputTitle}
+          inputState={inputTitle}
+          setInputFn={setInputTitle}
+          btnText={"タイトル"}
         />
-        <CreateTag
-          onClick={createTagsBtnClick}
-          inputTags={inputTags}
-          setInputTags={setInputTags}
+        <Create
+          onClick={createTagBtnClick}
+          inputState={inputTags}
+          setInputFn={setInputTags}
+          btnText={"タグ"}
         />
-        <CreateCategory
+        <Create
           onClick={createCategoryBtnClick}
-          inputCategory={inputCategory}
-          setInputCategory={setInputCategory}
+          inputState={inputCategory}
+          setInputFn={setInputCategory}
+          btnText={"カテゴリー"}
         />
         <AllCreateText onClick={allCreateClick} />
         <Save />
