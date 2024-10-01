@@ -50,24 +50,32 @@ export const handleAllCreateBtn = (
 
 // 生成物をZIPファイルとしてDLできるようにする関数
 export const handleDownload = async (text, image, generateFileName) => {
-  const zip = new JSZip();
+  if (
+    !image ||
+    text ===
+      "タイトル\nchatGPTでタイトルを生成\n\nタグ\nchatGPTでタグを生成\n\nカテゴリー\nchatGPTでカテゴリーを生成"
+  ) {
+    alert("必要な項目に変更がありません。");
+  } else {
+    const zip = new JSZip();
 
-  // テキストファイルを追加
-  const textFileContent = text;
-  zip.file(`${generateFileName()}.txt`, textFileContent);
+    // テキストファイルを追加
+    const textFileContent = text;
+    zip.file(`${generateFileName()}.txt`, textFileContent);
 
-  // 画像ファイルを追加
-  if (image) {
-    const imageBlob = image.startsWith("data:image")
-      ? dataURLtoBlob(image)
-      : image;
-    zip.file(`${generateFileName()}.jpeg`, imageBlob, { binary: true });
+    // 画像ファイルを追加
+    if (image) {
+      const imageBlob = image.startsWith("data:image")
+        ? dataURLtoBlob(image)
+        : image;
+      zip.file(`${generateFileName()}.jpeg`, imageBlob, { binary: true });
+    }
+
+    // ZIP ファイルを生成してダウンロード
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      saveAs(content, `${generateFileName()}.zip`); // 生成した ZIP ファイルをダウンロード
+    });
   }
-
-  // ZIP ファイルを生成してダウンロード
-  zip.generateAsync({ type: "blob" }).then((content) => {
-    saveAs(content, `${generateFileName()}.zip`); // 生成した ZIP ファイルをダウンロード
-  });
 };
 
 // 画像ファイルを正しくダウンロードできるように変換する関数
@@ -93,6 +101,7 @@ export const generateFileName = () => {
   const day = String(now.getDate()).padStart(2, "0");
   const hours = String(now.getHours()).padStart(2, "0");
   const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
 
-  return `${year}-${month}-${day}_${hours}-${minutes}`;
+  return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
 };
