@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Create = ({ onClick, inputState, setInputFn, btnText, loading }) => {
   const handleInputChange = (e) => {
     setInputFn(e.target.value);
@@ -27,6 +29,14 @@ const Create = ({ onClick, inputState, setInputFn, btnText, loading }) => {
       </div>
     </div>
   );
+};
+
+Create.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  inputState: PropTypes.string.isRequired,
+  setInputFn: PropTypes.func.isRequired,
+  btnText: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Create;

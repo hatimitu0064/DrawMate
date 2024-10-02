@@ -1,11 +1,18 @@
-import "./Save.scss"
+import PropTypes from "prop-types";
+import "./Save.scss";
 
-const Save = ({onClick}) => {
-	return (
-		<div className="save-btn-container">
-			<button className="save-btn" onClick={onClick}>保存</button>
-		</div>
-	)
-}
+const Save = ({ onClick }) => {
+  return (
+    <div className="save-btn-container">
+      <button className="save-btn" onClick={onClick}>
+        保存
+      </button>
+    </div>
+  );
+};
 
-export default Save
+Save.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
+
+export default Save;

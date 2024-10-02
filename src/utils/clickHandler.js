@@ -16,9 +16,9 @@ export const handleCreateBtn = async (setInput, prompt, img) => {
 };
 
 // 生成物をZIPファイルとしてDLできるようにする関数
-export const handleDownload = async (text, image, generateFileName) => {
+export const handleDownload = async (text, img, generateFileName) => {
   if (
-    !image ||
+    !img ||
     text ===
       "タイトル\nchatGPTでタイトルを生成\n\nタグ\nchatGPTでタグを生成\n\nカテゴリー\nchatGPTでカテゴリーを生成"
   ) {
@@ -31,10 +31,10 @@ export const handleDownload = async (text, image, generateFileName) => {
     zip.file(`${generateFileName()}.txt`, textFileContent);
 
     // 画像ファイルを追加
-    if (image) {
-      const imageBlob = image.startsWith("data:image")
-        ? dataURLtoBlob(image)
-        : image;
+    if (img) {
+      const imageBlob = img.startsWith("data:image")
+        ? dataURLtoBlob(img)
+        : img;
       zip.file(`${generateFileName()}.jpeg`, imageBlob, { binary: true });
     }
 

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./AllCreateText.scss";
 
 const AllCreateText = ({ onClick }) => {
@@ -8,6 +9,10 @@ const AllCreateText = ({ onClick }) => {
       </button>
     </div>
   );
+};
+
+AllCreateText.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default AllCreateText;
