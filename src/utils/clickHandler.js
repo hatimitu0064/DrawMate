@@ -1,6 +1,7 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver"; // file-saverは、生成したZIPをダウンロードするために使用
 
+
 export const createTitleItems = {
   prompt:
     "この画像から連想されるタイトルを5つ以内で箇条書きで答えろ、なお箇条書きにされたタイトル以外の文章は書きこむな",

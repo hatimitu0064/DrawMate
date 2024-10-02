@@ -6,9 +6,7 @@ const Create = ({ onClick, inputState, setInputFn, btnText }) => {
   return (
     <div className="create-container">
       <div className="GPT-response-container">
-        {inputState === "chatGPTでタイトルを生成" ||
-        inputState === "chatGPTでタグを生成" ||
-        inputState === "chatGPTでカテゴリーを生成" ? (
+        {/(chatGPTで(タイトル|タグ|カテゴリー)を生成)/.test(inputState) ? (
           <p>{inputState}</p>
         ) : (
           <textarea
