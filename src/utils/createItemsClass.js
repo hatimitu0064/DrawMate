@@ -8,7 +8,7 @@ class CreateItems {
   }
 
   async fetchRes() {
-    const res = await this._fetchGPTapi();
+    const res = await this._useChatGPTapi();
     this._res = res;
   }
 
@@ -20,8 +20,8 @@ class CreateItems {
     return this._res;
   }
 
-  async _fetchGPTapi() {
-		const prompt = this._prompt
+  async _useChatGPTapi() {
+    const prompt = this._prompt;
 
     const res = await axios.request({
       method: "post",

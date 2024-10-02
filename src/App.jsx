@@ -26,6 +26,7 @@ function App() {
   const [inputCategory, setInputCategory] =
     useState("chatGPTでカテゴリーを生成");
 
+	//ローディング用のState
   const [loadingTitle, setLoadingTitle] = useState(false);
   const [loadingTag, setLoadingTag] = useState(false);
   const [loadingCategory, setLoadingCategory] = useState(false);
@@ -80,7 +81,6 @@ function App() {
           setInputFn={setInputTitle}
           loading={loadingTitle}
           btnText={"タイトル"}
-          img={selectedImg}
         />
         <Create
           onClick={createTagBtnClick}
