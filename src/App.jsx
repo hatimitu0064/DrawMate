@@ -31,6 +31,7 @@ function App() {
     handleCreateBtn(setInputTags, createTagItems, selectedImg);
   const createCategoryBtnClick = () =>
     handleCreateBtn(setInputCategory, createCategoryItems, selectedImg);
+
   const allCreateClick = () =>
     handleAllCreateBtn(
       createTitleBtnClick,
