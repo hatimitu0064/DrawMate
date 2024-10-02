@@ -13,6 +13,11 @@ import {
   handleCreateBtn,
   handleDownload,
 } from "./utils/clickHandler";
+import {
+  createCategoryPrompt,
+  createTagPrompt,
+  createTitlePrompt,
+} from "./utils/createPrompt";
 
 function App() {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -25,33 +30,22 @@ function App() {
   const [loadingTag, setLoadingTag] = useState(false);
   const [loadingCategory, setLoadingCategory] = useState(false);
 
+
   const createTitleBtnClick = async () => {
     setLoadingTitle(true);
-    await handleCreateBtn(
-      setInputTitle,
-      "この画像から連想されるタイトルを5つ以内で箇条書きで答えろ、なお箇条書きにされたタイトル以外の文章は書きこむな",
-      selectedImg
-    );
+    await handleCreateBtn(setInputTitle, createTitlePrompt, selectedImg);
     setLoadingTitle(false);
   };
 
   const createTagBtnClick = async () => {
     setLoadingTag(true);
-    await handleCreateBtn(
-      setInputTags,
-      "この画像から連想されるタグを5つ以内で箇条書きで答えろ、なお箇条書きにされたタイトル以外の文章は書きこむな",
-      selectedImg
-    );
+    await handleCreateBtn(setInputTags, createTagPrompt, selectedImg);
     setLoadingTag(false);
   };
 
   const createCategoryBtnClick = async () => {
     setLoadingCategory(true);
-    await handleCreateBtn(
-      setInputCategory,
-      "この画像から連想されるカテゴリーを[花・植物、ビジネス、チラシ、名刺、医療・福祉、人物、動物・生き物、乗り物、フレーム、生活、食べ物、文具、春、夏、秋、冬、背景・壁紙、バナー、スポーツ、ポストカード、学校プリント用、アイコン、セット、文字、筆文字、萌え系、年賀状、ファッション、クリスマス、その他]この[]の中の単語に該当する物を5つ以内で箇条書きで答えろ、なお箇条書きにされたカテゴリー以外の文章は書きこむな",
-      selectedImg
-    );
+    await handleCreateBtn(setInputCategory, createCategoryPrompt, selectedImg);
     setLoadingCategory(false);
   };
 
