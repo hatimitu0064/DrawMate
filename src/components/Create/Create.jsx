@@ -1,4 +1,4 @@
-const Create = ({ onClick, inputState, setInputFn, btnText }) => {
+const Create = ({ onClick, inputState, setInputFn, btnText, loading }) => {
   const handleInputChange = (e) => {
     setInputFn(e.target.value);
   };
@@ -6,13 +6,14 @@ const Create = ({ onClick, inputState, setInputFn, btnText }) => {
   return (
     <div className="create-container">
       <div className="GPT-response-container">
-        {/(chatGPTで(タイトル|タグ|カテゴリー)を生成)/.test(inputState) ? (
+        {loading ? (
+          <div className="loader"></div> // ローディング中の表示
+        ) : /^(chatGPTで(タイトル|タグ|カテゴリー)を生成)$/.test(inputState) ? (
           <p>{inputState}</p>
         ) : (
           <textarea
             className="GPT-response"
-            type="text"
-            value={inputState}
+            value={inputState || ""}
             onChange={handleInputChange}
             rows={10}
             cols={70}
