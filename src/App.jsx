@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 
-import AllCreateText from "./components/AllCreateText/AllCreateText";
 import ImgForm from "./components/ImgForm/ImgForm";
 import Save from "./components/Save/Save";
 import Layout from "./components/Layout/Layout";
@@ -30,6 +29,14 @@ function App() {
   const [loadingTitle, setLoadingTitle] = useState(false);
   const [loadingTag, setLoadingTag] = useState(false);
   const [loadingCategory, setLoadingCategory] = useState(false);
+
+  useEffect(() => {
+    if (selectedImg) {
+      setInputTitle("chatGPTでタイトルを生成");
+      setInputTags("chatGPTでタグを生成");
+      setInputCategory("chatGPTでカテゴリーを生成");
+    }
+  }, [selectedImg]);
 
   const createTitleBtnClick = async () => {
     setLoadingTitle(true);
