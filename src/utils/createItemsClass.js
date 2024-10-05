@@ -4,7 +4,7 @@ class CreateItems {
   constructor(prompt, img) {
     this._prompt = prompt;
     this._img = img;
-    this._res = null;
+    this._res = "";
   }
 
   async fetchRes() {
@@ -21,8 +21,6 @@ class CreateItems {
   }
 
   async _useChatGPTapi() {
-    const prompt = this._prompt;
-
     const res = await axios.request({
       method: "post",
       url: "https://api.openai.com/v1/chat/completions",
@@ -40,7 +38,7 @@ class CreateItems {
             content: [
               {
                 type: "text",
-                text: prompt,
+                text: `${this._prompt}`,
               },
             ],
           },

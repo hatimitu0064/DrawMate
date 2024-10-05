@@ -5,7 +5,7 @@ const AllCreateText = ({ onClick }) => {
   return (
     <div className="allCreateText-btn-container">
       <button className="allCreateText-btn" onClick={onClick}>
-        一括生成
+        ChatGPTで生成
       </button>
     </div>
   );

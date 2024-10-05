@@ -17,14 +17,14 @@ const Create = ({ onClick, inputState, setInputFn, btnText, loading }) => {
             className="GPT-response"
             value={inputState || ""}
             onChange={handleInputChange}
-            rows={10}
+            rows={15}
             cols={70}
           />
         )}
       </div>
       <div className="create-btn-container">
         <button className="create-btn" onClick={onClick}>
-          {btnText}生成
+          もう一度{btnText}生成
         </button>
       </div>
     </div>

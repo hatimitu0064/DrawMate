@@ -1,17 +1,16 @@
-.allCreateText-btn-container {
+.copyText-btn-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-left: 10px;
 
-	.allCreateText-btn {
+	.copyText-btn {
 		width: 150px;
 		height: 80px;
 		border-radius: 5px;
 		border: none;
 		background-color: rgb(52, 197, 30);
 		font-size: medium;
-		outline: none;
 		cursor: pointer;
 
 		&:hover {

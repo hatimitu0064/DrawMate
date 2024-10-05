@@ -26,11 +26,10 @@ function App() {
   const [inputCategory, setInputCategory] =
     useState("chatGPTでカテゴリーを生成");
 
-	//ローディング用のState
+  //ローディング用のState
   const [loadingTitle, setLoadingTitle] = useState(false);
   const [loadingTag, setLoadingTag] = useState(false);
   const [loadingCategory, setLoadingCategory] = useState(false);
-
 
   const createTitleBtnClick = async () => {
     setLoadingTitle(true);
@@ -51,17 +50,21 @@ function App() {
   };
 
   const allCreateClick = async () => {
-    setLoadingTitle(true);
-    setLoadingTag(true);
-    setLoadingCategory(true);
+    if (!selectedImg) {
+      alert("エラー： 画像を選択してください。");
+    } else {
+      setLoadingTitle(true);
+      setLoadingTag(true);
+      setLoadingCategory(true);
 
-    await createTitleBtnClick();
-    await createTagBtnClick();
-    await createCategoryBtnClick();
+      await createTitleBtnClick();
+      await createTagBtnClick();
+      await createCategoryBtnClick();
 
-    setLoadingTitle(false);
-    setLoadingTag(false);
-    setLoadingCategory(false);
+      setLoadingTitle(false);
+      setLoadingTag(false);
+      setLoadingCategory(false);
+    }
   };
 
   const saveBtnClick = () =>
@@ -73,8 +76,12 @@ function App() {
 
   return (
     <>
+      <ImgForm
+        selectedImg={selectedImg}
+        setSelectedImg={setSelectedImg}
+        onClick={allCreateClick}
+      />
       <Layout>
-        <ImgForm selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         <Create
           onClick={createTitleBtnClick}
           inputState={inputTitle}
@@ -96,9 +103,8 @@ function App() {
           loading={loadingCategory}
           btnText={"カテゴリー"}
         />
-        <AllCreateText onClick={allCreateClick} />
-        <Save onClick={saveBtnClick} />
       </Layout>
+      <Save onClick={saveBtnClick} />
     </>
   );
 }
