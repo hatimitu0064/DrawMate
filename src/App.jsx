@@ -4,8 +4,8 @@ import "./App.css";
 
 import ImgForm from "./components/ImgForm/ImgForm";
 import Save from "./components/Save/Save";
-import Layout from "./components/Layout/Layout";
 import Create from "./components/Create/Create";
+import CreateLayout from "./components/CreateLayout/CreateLayout";
 
 import {
   copyArray,
@@ -100,7 +100,7 @@ function App() {
         copyBtnClick={copyBtnClick}
         loading={loadingCopy}
       />
-      <Layout>
+      <CreateLayout>
         <Create
           onClick={createTitleBtnClick}
           inputState={inputTitle}
@@ -122,7 +122,7 @@ function App() {
           loading={loadingCategory}
           btnText={"カテゴリー"}
         />
-      </Layout>
+      </CreateLayout>
       <Save onClick={saveBtnClick} />
     </>
   );

@@ -87,3 +87,15 @@ export const copyArray = async (copyTextArray) => {
     }
   }
 };
+
+// 画像が選択されたときに状態を保存する関数
+export const imgChange = (e, setSelectedImg) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectedImg(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};

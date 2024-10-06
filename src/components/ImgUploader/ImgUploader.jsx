@@ -1,7 +1,8 @@
 import { useDropzone } from "react-dropzone";
 import "./ImgUploader.scss"; // スタイルを適用するためのCSSファイルをインポート
+import PropTypes from "prop-types";
 
-function ImageUploader(img, setImg) {
+function ImgUploader({ img, setImg }) {
   // ファイルドロップ時の処理
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -32,10 +33,15 @@ function ImageUploader(img, setImg) {
           style={{ maxWidth: "100%", maxHeight: "100%" }}
         />
       ) : (
-        <p>画像をドラッグ＆ドロップ、またはクリックして選択してください</p>
+        <p>画像をドラッグ＆ドロップ<br></br>またはクリックして選択してください</p>
       )}
     </div>
   );
 }
 
-export default ImageUploader;
+ImgUploader.propTypes = {
+  img: PropTypes.string,
+  setImg: PropTypes.func.isRequired,
+};
+
+export default ImgUploader;

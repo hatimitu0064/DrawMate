@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import './Layout.scss'
+import './CreateLayout.scss'
 
-const Layout = ({ children }) => {
+const CreateLayout = ({ children }) => {
   return (
     <div className="layout">
       <main>{children}</main>
@@ -9,8 +9,8 @@ const Layout = ({ children }) => {
   )
 };
 
-Layout.propTypes = {
+CreateLayout.propTypes = {
   children: PropTypes.node.isRequired, // childrenを必要なプロパティとして定義
 };
 
-export default Layout;
+export default CreateLayout;

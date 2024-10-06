@@ -1,8 +1,4 @@
 .fileInput-label {
-  font-size: xx-large;
-  color: rgb(136, 135, 133);
-  border: 4px dotted rgb(136, 135, 133);
-  padding: 130px;
   border-radius: 4rem;
   white-space: normal;
   cursor: pointer;
@@ -10,10 +6,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 300px;
-  height: 300px;
+  width: 470px;
+  height: 370px;
   background-color: #f9f9f9;
   transition: background-color 0.3s ease;
+	background-color: rgb(59, 57, 57);
+
+	p {
+		color: rgb(136, 135, 133);
+		font-size: x-large;
+	}
 
   .active {
     background-color: #e0e0e0; /* ドラッグ中の背景色変更 */
