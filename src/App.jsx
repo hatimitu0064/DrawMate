@@ -78,7 +78,7 @@ function App() {
 
   const copyBtnClick = async () => {
     // 生成されたテキストを配列で所持する
-    const copyTextArray = [inputTitle, inputTag]; // inputCategoryカテゴリーは不要？
+    const copyTextArray = [inputTag, inputTitle]; // inputCategoryカテゴリーは不要？
     setLoadingCopy(true);
     await copyArray(copyTextArray);
     setLoadingCopy(false);
