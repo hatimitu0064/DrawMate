@@ -4,7 +4,13 @@ import "./ImgForm.scss";
 import AllCreateText from "../AllCreateText/AllCreateText";
 import CopyText from "../CopyText/CopyText";
 
-const ImgForm = ({ selectedImg, setSelectedImg, onClick }) => {
+const ImgForm = ({
+  selectedImg,
+  setSelectedImg,
+  allCreateClick,
+  copyBtnClick,
+  loading,
+}) => {
   const handleImgChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -27,14 +33,14 @@ const ImgForm = ({ selectedImg, setSelectedImg, onClick }) => {
                   クリックして<br></br>画像を選択。
                 </label>
               ) : (
-                <label htmlFor="fileInput" className="img-wrap">
+                <label htmlFor="fileInput" className="img-wrapper">
                   <img src={selectedImg} className="selectImg" />
                 </label>
               )}
             </div>
             <div className="btn-container">
-              <AllCreateText onClick={onClick} />
-              <CopyText />
+              <AllCreateText allCreateClick={allCreateClick} />
+              <CopyText copyBtnClick={copyBtnClick} loading={loading} />
             </div>
           </div>
         )}
@@ -54,7 +60,9 @@ const ImgForm = ({ selectedImg, setSelectedImg, onClick }) => {
 ImgForm.propTypes = {
   selectedImg: PropTypes.string,
   setSelectedImg: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
+  allCreateClick: PropTypes.func.isRequired,
+  copyBtnClick: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default ImgForm;

@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import "./AllCreateText.scss";
 
-const AllCreateText = ({ onClick }) => {
+const AllCreateText = ({ allCreateClick }) => {
   return (
     <div className="allCreateText-btn-container">
-      <button className="allCreateText-btn" onClick={onClick}>
+      <button className="allCreateText-btn" onClick={allCreateClick}>
         ChatGPTで生成
       </button>
     </div>
@@ -12,7 +12,7 @@ const AllCreateText = ({ onClick }) => {
 };
 
 AllCreateText.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  allCreateClick: PropTypes.func.isRequired,
 };
 
 export default AllCreateText;

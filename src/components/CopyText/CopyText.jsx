@@ -1,11 +1,25 @@
+import PropTypes from "prop-types";
 import "./CopyText.scss";
 
-const CopyText = () => {
+const CopyText = ({ copyBtnClick, loading }) => {
   return (
     <div className="copyText-btn-container">
-      <button className="copyText-btn">テキストをコピー</button>
+      {loading ? (
+        <button className="copyText-btn">
+          <span className="copy-loader"></span>
+        </button>
+      ) : (
+        <button className="copyText-btn" onClick={copyBtnClick}>
+          テキストをコピー
+        </button>
+      )}
     </div>
   );
+};
+
+CopyText.propTypes = {
+  copyBtnClick: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default CopyText;

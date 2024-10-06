@@ -2,7 +2,6 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver"; // file-saverは、生成したZIPをダウンロードするために使用
 import CreateItems from "./createItemsClass";
 
-
 // APIにプロンプトを投げてそのresponseを保存する関数
 export const handleCreateBtn = async (setInput, prompt, img) => {
   if (!img) {
@@ -32,9 +31,7 @@ export const handleDownload = async (text, img, generateFileName) => {
 
     // 画像ファイルを追加
     if (img) {
-      const imageBlob = img.startsWith("data:image")
-        ? dataURLtoBlob(img)
-        : img;
+      const imageBlob = img.startsWith("data:image") ? dataURLtoBlob(img) : img;
       zip.file(`${generateFileName()}.jpeg`, imageBlob, { binary: true });
     }
 
@@ -71,4 +68,22 @@ export const generateFileName = () => {
   const seconds = String(now.getSeconds()).padStart(2, "0");
 
   return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+};
+
+// クリックで順番にテキストをコピーする関数（逆順にコピー）
+export const copyArray = async (copyTextArray) => {
+  // インデックスを逆順にするために配列を逆にループ
+  for (let i = copyTextArray.length - 1; i >= 0; i--) {
+    const text = copyTextArray[i];
+    try {
+      // クリップボードにコピー
+      await navigator.clipboard.writeText(text);
+      console.log(`コピーされたテキスト: ${text}`);
+
+      // 各コピーの間に 1秒の遅延を追加
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    } catch (err) {
+      alert("コピーに失敗しました:", err);
+    }
+  }
 };

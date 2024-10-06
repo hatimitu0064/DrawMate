@@ -1,20 +1,39 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .copyText-btn-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
 
-	.copyText-btn {
-		width: 150px;
-		height: 80px;
-		border-radius: 5px;
-		border: none;
-		background-color: rgb(52, 197, 30);
-		font-size: medium;
-		cursor: pointer;
+  .copyText-btn {
+    width: 150px;
+    height: 80px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(52, 197, 30);
+    font-size: medium;
+    cursor: pointer;
 
-		&:hover {
-			background-color: rgba(52, 197, 30, 0.788);
-		}
-	}
+    .copy-loader {
+			display: inline-block;
+      border: 5px solid rgb(21, 129, 230);
+      border-top: 5px solid rgb(52, 197, 30);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    &:hover {
+      background-color: rgba(52, 197, 30, 0.788);
+    }
+  }
 }

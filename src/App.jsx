@@ -8,6 +8,7 @@ import Layout from "./components/Layout/Layout";
 import Create from "./components/Create/Create";
 
 import {
+  copyArray,
   generateFileName,
   handleCreateBtn,
   handleDownload,
@@ -29,6 +30,7 @@ function App() {
   const [loadingTitle, setLoadingTitle] = useState(false);
   const [loadingTag, setLoadingTag] = useState(false);
   const [loadingCategory, setLoadingCategory] = useState(false);
+  const [loadingCopy, setLoadingCopy] = useState(false);
 
   useEffect(() => {
     if (selectedImg) {
@@ -74,6 +76,14 @@ function App() {
     }
   };
 
+  const copyBtnClick = async () => {
+    // 生成されたテキストを配列で所持する
+    const copyTextArray = [inputTitle, inputTag]; // inputCategoryカテゴリーは不要？
+    setLoadingCopy(true);
+    await copyArray(copyTextArray);
+    setLoadingCopy(false);
+  };
+
   const saveBtnClick = () =>
     handleDownload(
       `タイトル\n${inputTitle}\n\nタグ\n${inputTag}\n\nカテゴリー\n${inputCategory}`,
@@ -86,7 +96,9 @@ function App() {
       <ImgForm
         selectedImg={selectedImg}
         setSelectedImg={setSelectedImg}
-        onClick={allCreateClick}
+        allCreateClick={allCreateClick}
+        copyBtnClick={copyBtnClick}
+        loading={loadingCopy}
       />
       <Layout>
         <Create
