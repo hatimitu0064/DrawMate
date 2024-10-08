@@ -1,9 +1,11 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver"; // file-saverは、生成したZIPをダウンロードするために使用
 import CreateItems from "./createItemsClass";
-import { setTitle } from "../features/createText/CreateTitle";
-import { setTag } from "../features/createText/CreateTag";
-import { setCategory } from "../features/createText/CreateCategory";
+import {
+  setTitle,
+  setTag,
+  setCategory,
+} from "../features/createText/CreateText";
 import { endLoading, startLoading } from "../features/loading/Loading";
 
 // APIにプロンプトを投げてそのresponseを保存する関数

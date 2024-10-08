@@ -5,8 +5,8 @@ import { endLoading, startLoading } from "../../features/loading/Loading";
 
 const CopyText = () => {
   const dispatch = useDispatch();
-  const { inputTitle } = useSelector((state) => state.title);
-  const { inputTag } = useSelector((state) => state.tag);
+  const { inputTitle } = useSelector((state) => state.create);
+  const { inputTag } = useSelector((state) => state.create);
   const { loadingCopy } = useSelector((state) => state.loading);
 
   const copyBtnClick = async () => {

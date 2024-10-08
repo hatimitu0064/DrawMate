@@ -5,9 +5,11 @@ import ImgUploader from "../ImgUploader/ImgUploader";
 import InputForm from "../InputForm/InputForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { resetTitle } from "../../features/createText/CreateTitle";
-import { resetTag } from "../../features/createText/CreateTag";
-import { resetCategory } from "../../features/createText/CreateCategory";
+import {
+  resetTitle,
+  resetTag,
+  resetCategory,
+} from "../../features/createText/CreateText";
 
 const ImgForm = () => {
   const dispatch = useDispatch();

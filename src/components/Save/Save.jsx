@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { generateFileName, handleDownload } from "../../utils/clickHandler";
 
 const Save = () => {
-  const { inputTitle } = useSelector((state) => state.title);
-  const { inputTag } = useSelector((state) => state.tag);
-  const { inputCategory } = useSelector((state) => state.category);
+  const { inputTitle } = useSelector((state) => state.create);
+  const { inputTag } = useSelector((state) => state.create);
+  const { inputCategory } = useSelector((state) => state.create);
   const { selectedImg } = useSelector((state) => state.img);
 
   const saveBtnClick = () =>

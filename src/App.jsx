@@ -19,9 +19,11 @@ import {
   createTitlePrompt,
 } from "./utils/createPrompt";
 
-import { setTitle } from "./features/createText/CreateTitle";
-import { setTag } from "./features/createText/CreateTag";
-import { setCategory } from "./features/createText/CreateCategory";
+import {
+  setTitle,
+  setTag,
+  setCategory,
+} from "./features/createText/CreateText";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,9 +31,9 @@ function App() {
   //各種ステートを定義
   const { selectedImg } = useSelector((state) => state.img);
 
-  const { inputTitle } = useSelector((state) => state.title);
-  const { inputTag } = useSelector((state) => state.tag);
-  const { inputCategory } = useSelector((state) => state.category);
+  const { inputTitle } = useSelector((state) => state.create.title);
+  const { inputTag } = useSelector((state) => state.create.tag);
+  const { inputCategory } = useSelector((state) => state.create.category);
 
   const { loadingTitle, loadingTag, loadingCategory } = useSelector(
     (state) => state.loading
