@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./App.css";
 
@@ -8,122 +8,74 @@ import Create from "./components/Create/Create";
 import CreateLayout from "./components/CreateLayout/CreateLayout";
 
 import {
-  copyArray,
-  generateFileName,
-  handleCreateBtn,
-  handleDownload,
+  createCategoryAsync,
+  createTagAsync,
+  createTitleAsync,
 } from "./utils/clickHandler";
+
 import {
   createCategoryPrompt,
   createTagPrompt,
   createTitlePrompt,
 } from "./utils/createPrompt";
 
+import { setTitle } from "./features/createText/CreateTitle";
+import { setTag } from "./features/createText/CreateTag";
+import { setCategory } from "./features/createText/CreateCategory";
+
 function App() {
-  const [selectedImg, setSelectedImg] = useState(null);
-  const [inputTitle, setInputTitle] = useState("chatGPTでタイトルを生成");
-  const [inputTag, setInputTags] = useState("chatGPTでタグを生成");
-  const [inputCategory, setInputCategory] =
-    useState("chatGPTでカテゴリーを生成");
+  const dispatch = useDispatch();
 
-  //ローディング用のState
-  const [loadingTitle, setLoadingTitle] = useState(false);
-  const [loadingTag, setLoadingTag] = useState(false);
-  const [loadingCategory, setLoadingCategory] = useState(false);
-  const [loadingCopy, setLoadingCopy] = useState(false);
+  //各種ステートを定義
+  const { selectedImg } = useSelector((state) => state.img);
 
-  useEffect(() => {
-    if (selectedImg) {
-      setInputTitle("chatGPTでタイトルを生成");
-      setInputTags("chatGPTでタグを生成");
-      setInputCategory("chatGPTでカテゴリーを生成");
-    }
-  }, [selectedImg]);
+  const { inputTitle } = useSelector((state) => state.title);
+  const { inputTag } = useSelector((state) => state.tag);
+  const { inputCategory } = useSelector((state) => state.category);
+
+  const { loadingTitle, loadingTag, loadingCategory } = useSelector(
+    (state) => state.loading
+  );
 
   const createTitleBtnClick = async () => {
-    setLoadingTitle(true);
-    await handleCreateBtn(setInputTitle, createTitlePrompt, selectedImg);
-    setLoadingTitle(false);
+    dispatch(createTitleAsync(createTitlePrompt, selectedImg));
   };
 
   const createTagBtnClick = async () => {
-    setLoadingTag(true);
-    await handleCreateBtn(setInputTags, createTagPrompt, selectedImg);
-    setLoadingTag(false);
+    dispatch(createTagAsync(createTagPrompt, selectedImg));
   };
 
   const createCategoryBtnClick = async () => {
-    setLoadingCategory(true);
-    await handleCreateBtn(setInputCategory, createCategoryPrompt, selectedImg);
-    setLoadingCategory(false);
+    dispatch(createCategoryAsync(createCategoryPrompt, selectedImg));
   };
-
-  const allCreateClick = async () => {
-    if (!selectedImg) {
-      alert("エラー： 画像を選択してください。");
-    } else {
-      setLoadingTitle(true);
-      setLoadingTag(true);
-      setLoadingCategory(true);
-
-      await createTitleBtnClick();
-      await createTagBtnClick();
-      await createCategoryBtnClick();
-
-      setLoadingTitle(false);
-      setLoadingTag(false);
-      setLoadingCategory(false);
-    }
-  };
-
-  const copyBtnClick = async () => {
-    // 生成されたテキストを配列で所持する
-    const copyTextArray = [inputTag, inputTitle]; // inputCategoryカテゴリーは不要？
-    setLoadingCopy(true);
-    await copyArray(copyTextArray);
-    setLoadingCopy(false);
-  };
-
-  const saveBtnClick = () =>
-    handleDownload(
-      `タイトル\n${inputTitle}\n\nタグ\n${inputTag}\n\nカテゴリー\n${inputCategory}`,
-      selectedImg,
-      generateFileName
-    );
 
   return (
     <>
-      <ImgForm
-        selectedImg={selectedImg}
-        setSelectedImg={setSelectedImg}
-        allCreateClick={allCreateClick}
-        copyBtnClick={copyBtnClick}
-        loading={loadingCopy}
-      />
+      <ImgForm />
       <CreateLayout>
         <Create
           onClick={createTitleBtnClick}
           inputState={inputTitle}
-          setInputFn={setInputTitle}
+          setInputFn={(value) => dispatch(setTitle(value))}
           loading={loadingTitle}
           btnText={"タイトル"}
         />
         <Create
           onClick={createTagBtnClick}
           inputState={inputTag}
-          setInputFn={setInputTags}
+          setInputFn={(value) => dispatch(setTag(value))}
           loading={loadingTag}
           btnText={"タグ"}
         />
         <Create
           onClick={createCategoryBtnClick}
           inputState={inputCategory}
-          setInputFn={setInputCategory}
+          setInputFn={(value) => dispatch(setCategory(value))}
           loading={loadingCategory}
           btnText={"カテゴリー"}
         />
       </CreateLayout>
-      <Save onClick={saveBtnClick} />
+      <Save />
     </>
   );
 }

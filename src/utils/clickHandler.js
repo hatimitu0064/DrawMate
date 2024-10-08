@@ -1,6 +1,10 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver"; // file-saverは、生成したZIPをダウンロードするために使用
 import CreateItems from "./createItemsClass";
+import { setTitle } from "../features/createText/CreateTitle";
+import { setTag } from "../features/createText/CreateTag";
+import { setCategory } from "../features/createText/CreateCategory";
+import { endLoading, startLoading } from "../features/loading/Loading";
 
 // APIにプロンプトを投げてそのresponseを保存する関数
 export const handleCreateBtn = async (setInput, prompt, img) => {
@@ -12,6 +16,35 @@ export const handleCreateBtn = async (setInput, prompt, img) => {
     console.log(createItems.prompt);
     setInput(createItems.res);
   }
+};
+
+export const ReduxHandleCreateBtn = async (dispatch, setFn, prompt, img) => {
+  if (!img) {
+    alert("エラー： 画像を選択してください。");
+  } else {
+    const createItems = new CreateItems(prompt, img);
+    await createItems.fetchRes();
+    // console.log(createItems.prompt);
+    dispatch(setFn(createItems.res));
+  }
+};
+
+export const createTitleAsync = (prompt, img) => async (dispatch) => {
+  dispatch(startLoading({ type: "loadingTitle" })); // ローディングを開始
+  await ReduxHandleCreateBtn(dispatch, setTitle, prompt, img); // dispatchを渡して非同期処理を実行
+  dispatch(endLoading({ type: "loadingTitle" })); // ローディングを終了
+};
+
+export const createTagAsync = (prompt, img) => async (dispatch) => {
+  dispatch(startLoading({ type: "loadingTag" }));
+  await ReduxHandleCreateBtn(dispatch, setTag, prompt, img);
+  dispatch(endLoading({ type: "loadingTag" }));
+};
+
+export const createCategoryAsync = (prompt, img) => async (dispatch) => {
+  dispatch(startLoading({ type: "loadingCategory" }));
+  await ReduxHandleCreateBtn(dispatch, setCategory, prompt, img);
+  dispatch(endLoading({ type: "loadingCategory" }));
 };
 
 // 生成物をZIPファイルとしてDLできるようにする関数
@@ -89,12 +122,12 @@ export const copyArray = async (copyTextArray) => {
 };
 
 // 画像が選択されたときに状態を保存する関数
-export const imgChange = (e, setSelectedImg) => {
+export const imgChange = (e, setImg, dispatch) => {
   const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onloadend = () => {
-      setSelectedImg(reader.result);
+      dispatch(setImg(reader.result));
     };
     reader.readAsDataURL(file);
   }

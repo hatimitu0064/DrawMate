@@ -1,18 +1,27 @@
-import PropTypes from "prop-types";
-
 import "./ImgForm.scss";
 import AllCreateText from "../AllCreateText/AllCreateText";
 import CopyText from "../CopyText/CopyText";
 import ImgUploader from "../ImgUploader/ImgUploader";
 import InputForm from "../InputForm/InputForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { resetTitle } from "../../features/createText/CreateTitle";
+import { resetTag } from "../../features/createText/CreateTag";
+import { resetCategory } from "../../features/createText/CreateCategory";
 
-const ImgForm = ({
-  selectedImg,
-  setSelectedImg,
-  allCreateClick,
-  copyBtnClick,
-  loading,
-}) => {
+const ImgForm = () => {
+  const dispatch = useDispatch();
+  const { selectedImg } = useSelector((state) => state.img);
+
+  //画像の変更を監視してtextを初期化
+  useEffect(() => {
+    if (selectedImg) {
+      dispatch(resetTitle());
+      dispatch(resetTag());
+      dispatch(resetCategory());
+    }
+  }, [selectedImg]);
+
   return (
     <>
       <div className="img-form-container">
@@ -20,29 +29,21 @@ const ImgForm = ({
           <div className="img-container">
             {!selectedImg ? (
               <div className="imgUploader-wrapper">
-                <ImgUploader img={selectedImg} setImg={setSelectedImg} />
+                <ImgUploader />
               </div>
             ) : (
-              <ImgUploader img={selectedImg} setImg={setSelectedImg} />
+              <ImgUploader />
             )}
           </div>
           <div className="btn-container">
-            <AllCreateText allCreateClick={allCreateClick} />
-            <CopyText copyBtnClick={copyBtnClick} loading={loading} />
+            <AllCreateText />
+            <CopyText />
           </div>
         </div>
-        <InputForm setSelectedImg={setSelectedImg} />
+        <InputForm />
       </div>
     </>
   );
-};
-
-ImgForm.propTypes = {
-  selectedImg: PropTypes.string,
-  setSelectedImg: PropTypes.func.isRequired,
-  allCreateClick: PropTypes.func.isRequired,
-  copyBtnClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default ImgForm;

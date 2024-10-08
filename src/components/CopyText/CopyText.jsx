@@ -1,10 +1,25 @@
-import PropTypes from "prop-types";
 import "./CopyText.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { copyArray } from "../../utils/clickHandler";
+import { endLoading, startLoading } from "../../features/loading/Loading";
 
-const CopyText = ({ copyBtnClick, loading }) => {
+const CopyText = () => {
+  const dispatch = useDispatch();
+  const { inputTitle } = useSelector((state) => state.title);
+  const { inputTag } = useSelector((state) => state.tag);
+  const { loadingCopy } = useSelector((state) => state.loading);
+
+  const copyBtnClick = async () => {
+    // 生成されたテキストを配列で所持する
+    const copyTextArray = [inputTag, inputTitle];
+    dispatch(startLoading({ type: "loadingCopy" }));
+    await copyArray(copyTextArray);
+    dispatch(endLoading({ type: "loadingCopy" }));
+  };
+
   return (
     <div className="copyText-btn-container">
-      {loading ? (
+      {loadingCopy ? (
         <button className="copyText-btn">
           <span className="copy-loader"></span>
         </button>
@@ -15,11 +30,6 @@ const CopyText = ({ copyBtnClick, loading }) => {
       )}
     </div>
   );
-};
-
-CopyText.propTypes = {
-  copyBtnClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 export default CopyText;

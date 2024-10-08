@@ -1,9 +1,11 @@
-import PropTypes from "prop-types";
 import "./InputForm.scss";
 import { imgChange } from "../../utils/clickHandler";
+import { useDispatch } from "react-redux";
+import { setImg } from "../../features/selectedImg/SelectedImgSlice";
 
-const InputForm = ({ setSelectedImg }) => {
-  const handleImgChange = (e) => imgChange(e, setSelectedImg);
+const InputForm = () => {
+  const dispatch = useDispatch();
+  const handleImgChange = (e) => imgChange(e, setImg, dispatch);
 
   return (
     <form className="input-container">
@@ -15,10 +17,6 @@ const InputForm = ({ setSelectedImg }) => {
       />
     </form>
   );
-};
-
-InputForm.propTypes = {
-  setSelectedImg: PropTypes.func.isRequired,
 };
 
 export default InputForm;

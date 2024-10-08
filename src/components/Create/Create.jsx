@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import GPTresponse from "../GPTresponse/GPTresponse";
 import MoreCreateBtn from "../CreateBtn/CreateBtn";
 
-const Create = ({ onClick, inputState, setInputFn, btnText, loading }) => {
+const Create = ({ onClick, inputState, setInputFn,  btnText, loading }) => {
   const handleInputChange = (e) => {
     setInputFn(e.target.value);
   };
